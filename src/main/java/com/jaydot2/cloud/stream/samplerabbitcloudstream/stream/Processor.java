@@ -16,9 +16,9 @@ public interface Processor {
     @Input(Processor.FITNESS_INPUT_CHANNEL)
     public SubscribableChannel fitnessInputChannel();
 
-    @Output
+    @Output(Processor.STRENGTH_OUTPUT_CHANNEL)
     public MessageChannel strengthOutputChannel();
 
-    @Output
+    @Output(Processor.CARDIO_OUTPUT_CHANNEL)
     public MessageChannel cardioOutputChannel();
 }

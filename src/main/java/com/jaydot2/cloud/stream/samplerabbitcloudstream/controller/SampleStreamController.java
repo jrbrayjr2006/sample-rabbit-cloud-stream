@@ -18,8 +18,9 @@ public class SampleStreamController {
 
     @PostMapping( value = "/{message}" )
     public ResponseEntity<String> sendMessage(@PathVariable String message) {
-        ResponseEntity<String> response = new ResponseEntity<String>(HttpStatus.OK);
-        messageHandlerService.sendMessage(message);
+
+        String result = messageHandlerService.sendMessage(message);
+        ResponseEntity<String> response = new ResponseEntity<String>(result, HttpStatus.OK);
         return response;
     }
 }

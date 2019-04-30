@@ -8,6 +8,23 @@ spring:
         bray_input_channel:
           destination: jaydot2.input.channel
           binder: local_rabbit
+          group: bray
+        bray_output_channel:
+          destination: jaydot2.output.channel
+          binder: local_rabbit
+          group: bray
+        fitness_input_channel:
+          destination: fitness.input.channel
+          binder: local_rabbit
+          group: exercises
+        strength_output_channel:
+          destination: strength.output.channel
+          binder: local_rabbit
+          group: strength
+        cardio_output_channel:
+          destination: cardio.output.channel
+          binder: local_rabbit
+          group: strength
       binders:
         local_rabbit:
           type: rabbit
