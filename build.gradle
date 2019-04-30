@@ -33,9 +33,14 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation ('org.springframework.boot:spring-boot-starter-test',
+						// Spring Cloud Stream Testing
 						'org.springframework.cloud:spring-cloud-stream-test-support',
-						'org.junit.jupiter:junit-jupiter-api:5.4.2',
-						'org.junit.jupiter:junit-jupiter-engine:5.4.2')
+						// Junit 5 Jupiter
+						'org.junit.jupiter:junit-jupiter',
+//						'org.junit.jupiter:junit-jupiter-api:5.4.2',
+//						'org.junit.jupiter:junit-jupiter-engine:5.4.2',
+//						'org.junit.jupiter:junit-jupiter-params:5.4.2',
+						'org.mockito:mockito-junit-jupiter')
 }
 
 dependencyManagement {

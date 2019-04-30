@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MessageHandlerService {
 
-    public Object sendMessage(Object any) {
+    public Object sendMessage(String message) {
         return null;
     }
 }
