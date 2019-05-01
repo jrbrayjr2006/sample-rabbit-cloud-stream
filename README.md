@@ -15,6 +15,28 @@ Run the RabbitMQ docker image.
 docker run -d --hostname localhost --name bray-rabbit -p 15672:15672 -p 5672:5672 -p 5671:5671 rabbitmq:3-management
 ```
 
+### Gradle Dependencies
+
+```groovy
+dependencies {
+	implementation (...
+	                ...
+					'org.springframework.boot:spring-boot-starter-amqp',
+					'org.springframework.boot:spring-boot-starter-web',
+					'org.springframework.cloud:spring-cloud-stream',
+					'org.springframework.cloud:spring-cloud-stream-binder-rabbit',
+					'org.springframework.cloud:spring-cloud-starter-stream-rabbit')
+	...
+	...
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+```
+
 ## Implementation
 
 This imnplementation of Spring Cloud Streams uses interfaces to setup the `MessageChannel` and `SubscribableChannel`.
