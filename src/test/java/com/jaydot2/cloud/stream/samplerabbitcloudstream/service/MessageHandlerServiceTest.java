@@ -38,6 +38,7 @@ class MessageHandlerServiceTest {
         assertEquals(message, actual);
     }
 
+    @DisplayName("Given a message payload, when a message is sent, then the output channel should process it")
     @Test
     void shouldSendMessageToOutputChannel() {
         // Given
@@ -49,5 +50,13 @@ class MessageHandlerServiceTest {
         String actual = service.sendMessage(message);
         // Then
         verify(mockSource.outputChannel()).send(any(Message.class));
+    }
+
+    void shouldProcessIncomingMessages() {
+        // Given
+
+        // When
+
+        // Then
     }
 }

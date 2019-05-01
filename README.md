@@ -17,6 +17,30 @@ docker run -d --hostname localhost --name bray-rabbit -p 15672:15672 -p 5672:567
 
 ## Implementation
 
+This imnplementation of Spring Cloud Streams uses interfaces to setup the `MessageChannel` and `SubscribableChannel`.
+
+### Sending Messages
+
+Messages can be sent using as `MessageChannel`.
+
+```java
+import org.springframework.cloud.stream.annotation.Output;
+import org.springframework.messaging.MessageChannel;
+
+public interface Source {
+
+    public static String OUTPUT_CHANNEL = "jaydot2_output_channel";
+
+    @Output(Source.OUTPUT_CHANNEL)
+    public MessageChannel outputChannel();
+}
+```
+
+### Receiving Messages
+
+
+### Binding the Interfaces
+
 The interfaces which specify the input and output channels must be bound to the Spring Boot application in order to instantiate beans for them.  The `@EnableBinding` annotation is used for this on the Application class of the Spring Boot application.
 
 ```java
@@ -41,11 +65,11 @@ spring:
   cloud:
     stream:
       bindings:
-        bray_input_channel:
+        jaydot2_input_channel:
           destination: jaydot2.input.channel
           binder: local_rabbit
           group: bray
-        bray_output_channel:
+        jaydot2_output_channel:
           destination: jaydot2.output.channel
           binder: local_rabbit
         fitness_input_channel:
