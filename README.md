@@ -21,7 +21,7 @@ This imnplementation of Spring Cloud Streams uses interfaces to setup the `Messa
 
 ### Sending Messages
 
-Messages can be sent using as `MessageChannel`.
+Messages can be sent using a `MessageChannel`.  This is the producer portion of a message queue environment
 
 ```java
 import org.springframework.cloud.stream.annotation.Output;
@@ -36,8 +36,54 @@ public interface Source {
 }
 ```
 
+The output channel referenced in the static String in the interface above mapped to the channel condfigured in the `application.yml`.  The **destination** specifies the channel that will be used, the **binder** maps the channel to a RabbitMQ configuration, and the **group** specifies the queue name, `myqueue`, which will be `jaydot2.output.channel.myqueue`
+
+```yaml
+spring:
+  cloud:
+    stream:
+      bindings:
+        ...
+        ...
+        jaydot2_output_channel:
+          destination: jaydot2.output.channel
+          binder: local_rabbit
+          group: myqueue
+ ...
+ ...
+```
+
 ### Receiving Messages
 
+Messages can be received using a `SubscribableChannel`.  This is the consumer portion of a message queue environment.
+
+```java
+import org.springframework.cloud.stream.annotation.Input;
+import org.springframework.messaging.SubscribableChannel;
+
+public interface Sink {
+
+    public static String INPUT_CHANNEL = "jaydot2_input_channel";
+
+    @Input(Sink.INPUT_CHANNEL)
+    public SubscribableChannel inputChannel();
+}
+```
+
+The input channel referenced in the static String, `INPUT_CHANNEL`, in the code snippet above is mapped to a configuration in the `application.yml` file.  The **group** specifies the queue name, `myqueue`, which will be `jaydot2.output.channel.myqueue` in the RabbitMQ environment.
+
+```yaml
+spring:
+  cloud:
+    stream:
+      bindings:
+        jaydot2_input_channel:
+          destination: jaydot2.input.channel
+          binder: local_rabbit
+          group: myqueue
+        ...
+        ...
+```
 
 ### Binding the Interfaces
 
@@ -68,7 +114,7 @@ spring:
         jaydot2_input_channel:
           destination: jaydot2.input.channel
           binder: local_rabbit
-          group: bray
+          group: myqueue
         jaydot2_output_channel:
           destination: jaydot2.output.channel
           binder: local_rabbit
