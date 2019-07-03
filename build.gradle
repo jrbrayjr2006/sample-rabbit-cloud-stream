@@ -36,11 +36,11 @@ dependencies {
 						// Spring Cloud Stream Testing
 						'org.springframework.cloud:spring-cloud-stream-test-support',
 						// Junit 5 Jupiter
-						'org.junit.jupiter:junit-jupiter',
-//						'org.junit.jupiter:junit-jupiter-api:5.4.2',
-//						'org.junit.jupiter:junit-jupiter-engine:5.4.2',
-//						'org.junit.jupiter:junit-jupiter-params:5.4.2',
-						'org.mockito:mockito-junit-jupiter')
+//						'org.junit.jupiter:junit-jupiter',
+						'org.junit.jupiter:junit-jupiter-api:5.4.2',
+						'org.junit.jupiter:junit-jupiter-engine:5.4.2',
+						'org.junit.jupiter:junit-jupiter-params:5.4.2',
+						'org.mockito:mockito-junit-jupiter:2.23.0')
 }
 
 dependencyManagement {
